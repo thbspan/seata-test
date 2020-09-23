@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: multi-datasource-service
+  datasource:
+    dynamic:
+      primary: storage-ds
+      # 是否启用对seata的集成
+      seata: true
+      datasource:
+        # 订单 order 数据源配置
+        order-ds:
+          url: jdbc:mysql://127.0.0.1:3306/seata_order?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password:
+        # 账户 amount 数据源配置
+        amount-ds:
+          url: jdbc:mysql://127.0.0.1:3306/seata_amount?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password:
+        # 库存 storage 数据源配置
+        storage-ds:
+          url: jdbc:mysql://127.0.0.1:3306/seata_storage?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+          driver-class-name: com.mysql.jdbc.Driver
+          username: root
+          password:
+seata:
+  application-id: ${spring.application.name}
+  # seata 事务组编号，用于TC集群名
+  tx-service-group: ${spring.application.name}-group
+  service:
+    # 虚拟组和分组的映射
+    vgroup-mapping:
+      multi-datasource-service-group: default
+    # 分组和seata服务的映射
+    grouplist:
+      default: 10.201.3.75:8091
