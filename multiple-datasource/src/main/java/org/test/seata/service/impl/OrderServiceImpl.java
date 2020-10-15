@@ -11,7 +11,6 @@ import org.test.seata.service.OrderService;
 import org.test.seata.service.ProductService;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
