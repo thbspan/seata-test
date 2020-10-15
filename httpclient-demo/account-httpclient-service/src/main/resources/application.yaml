@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: account-httpclient-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/seata_amount?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password:
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-group # seata 事务组编号，用于 TC 集群名
+  service:
+    vgroup-mapping:
+      account-httpclient-service-group: default
+    grouplist:
+      default: 127.0.0.1:8091
+server:
+  port: 8082

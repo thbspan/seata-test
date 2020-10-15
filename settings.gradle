@@ -1,2 +1,10 @@
 rootProject.name = 'seata-test'
 include 'multiple-datasource'
+include 'httpclient-demo'
+include 'httpclient-demo:order-httpclient-service'
+findProject(':httpclient-demo:order-httpclient-service')?.name = 'order-httpclient-service'
+include 'httpclient-demo:product-httpclient-service'
+findProject(':httpclient-demo:product-httpclient-service')?.name = 'product-httpclient-service'
+include 'httpclient-demo:account-httpclient-service'
+findProject(':httpclient-demo:account-httpclient-service')?.name = 'account-httpclient-service'
+
