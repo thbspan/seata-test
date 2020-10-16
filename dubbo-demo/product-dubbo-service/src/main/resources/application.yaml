@@ -11,6 +11,9 @@ dubbo:
     name: ${spring.application.name}
   registry:
     address: nacos://localhost:8848
+    simplified: true
+  metadata-report:
+    address: nacos://localhost:8848
   protocol:
     port: -1
     name: dubbo
@@ -21,7 +24,7 @@ seata:
   tx-service-group: ${spring.application.name}-group
   service:
     vgroup-mapping:
-      product-dubbo-service: default
+      product-dubbo-service-group: default
   registry:
     type: nacos
     nacos:

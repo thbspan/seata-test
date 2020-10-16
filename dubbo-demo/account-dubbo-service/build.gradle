@@ -12,7 +12,6 @@ sourceCompatibility = 1.8
 
 dependencies {
     implementation project(':dubbo-demo:account-service-api')
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${rootProject.ext['mybatis.starter.version']}"
     implementation 'mysql:mysql-connector-java'
