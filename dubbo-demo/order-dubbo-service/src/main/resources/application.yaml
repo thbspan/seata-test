@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: order-dubbo-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/seata_order?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password:
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address: nacos://localhost:8848
+  protocol:
+    port: -1
+    name: dubbo
+  scan:
+    base-packages: org.test.seata.order.service.impl
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: ${spring.application.name}-group
+  service:
+    vgroup-mapping:
+      order-dubbo-service: default
+  registry:
+    type: nacos
+    nacos:
+      cluster: default
+      namespace: # Nacos 命名空间
+      server-addr: localhost:8848 # Nacos 服务地址

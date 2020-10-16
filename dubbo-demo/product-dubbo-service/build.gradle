@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.test.seata'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation project(':dubbo-demo:product-service-api')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${rootProject.ext['mybatis.starter.version']}"
+    implementation 'mysql:mysql-connector-java'
+    implementation "org.apache.dubbo:dubbo-spring-boot-starter:${rootProject.ext['dubbo.version']}"
+    implementation ("org.apache.dubbo:dubbo-registry-nacos:${rootProject.ext['dubbo.version']}") {
+        exclude group: 'log4j'
+    }
+    implementation "io.seata:seata-spring-boot-starter:${rootProject.ext['seata.version']}"
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -16,12 +16,15 @@ import com.alibaba.fastjson.JSONObject;
 
 import io.seata.core.context.RootContext;
 import io.seata.integration.http.DefaultHttpExecutor;
+import io.seata.spring.annotation.GlobalTransactional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
     @Autowired
     private OrderDao orderDao;
+
+    @GlobalTransactional
     @Override
     public Integer createOrder(Long userId, Long productId, Integer price) throws Exception {
         Integer amount = 1;// 购买数量，写死为1
